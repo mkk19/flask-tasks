@@ -15,7 +15,7 @@
 4. `docker run -p 5000:5000 -d docker-flask-api`
 5. Access the frontend via localhost:5000/
 6. Although instructions are provided on the index page, to call query the API for a specific Pokemon use the following:
-7. `localhost:5000/api/v1/shakespearify/pokemon?name=charizard`
+7. `http://localhost:5000/api/v1/shakespearify/pokemon?name=charizard` 
 
 ## Known issues
 
