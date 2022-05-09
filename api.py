@@ -11,7 +11,6 @@ app.config["DEBUG"] = True
 def home():
     return render_template("index.html")
 
-
 @app.route("/api/v1/shakespearify/pokemon/", methods=["GET"])
 def shakespearify():
     query = request.args["name"]
@@ -22,12 +21,11 @@ def shakespearify():
     else:
         return pokemon_info
 
-
+# checks if pokemon exists in pokedex
 def check_pokemon_valid(poke_query):
     url = "https://pokeapi.co/api/v2/pokemon-species/" + poke_query
     response = requests.get(url)
     if response.text == "Not Found":
-        print(response.text)
         return False
     else:
         json_object = response.text
@@ -41,7 +39,7 @@ def check_pokemon_valid(poke_query):
         }
         return pokemon_info
 
-
+# 'translates' to Shakespeare
 def translate(desc_string):
     url = (
         "https://api.funtranslations.com/translate/shakespeare.json?text="
@@ -53,14 +51,10 @@ def translate(desc_string):
     try:
         desc = python_obj["contents"]["translated"]
         clean_desc = desc.replace("\u2019", "").replace("\u2018", "")
-        print("this is he clean desc")
-        print(clean_desc)
         return clean_desc
+        #key error occurs because Shakespeare API has a rate limit of 5
     except KeyError as e:
-        return {
-            "Error": "Sorry the rate limit of 5 (imposed by Shakespeare API) has been exceeded, please try again in one hour"
-        }
-
+        return {"Error": "Sorry the rate limit of 5 (imposed by Shakespeare API) has been exceeded, please try again in one hour"}
 
 def main():
     app.run(host="0.0.0.0")
