@@ -10,7 +10,7 @@
 ## How to run
 
 1. Make sure Docker is installed and running
-2. Navigate to project root /flask-projects/api in terminal window
+2. Navigate to project root in terminal window
 3. Run the following: `docker image build -t docker-flask-api . ` to create docker image
 4. `docker run -p 5000:5000 -d docker-flask-api`
 5. Access the frontend via localhost:5000/
