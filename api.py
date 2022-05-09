@@ -50,8 +50,16 @@ def translate(desc_string):
     response = requests.get(url)
     json_object = response.text
     python_obj = json.loads(json_object)
-    desc = python_obj["contents"]["translated"]
-    return desc
+    try:
+        desc = python_obj["contents"]["translated"]
+        clean_desc = desc.replace("\u2019", "").replace("\u2018", "")
+        print("this is he clean desc")
+        print(clean_desc)
+        return clean_desc
+    except KeyError as e:
+        return {
+            "Error": "Sorry the rate limit of 5 (imposed by Shakespeare API) has been exceeded, please try again in one hour"
+        }
 
 
 def main():
