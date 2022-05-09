@@ -19,4 +19,4 @@
 
 ## Known issues
 
-Due to rate limit imposed by Shakespeare API, the Poke2Shakespeare API can only make up to five requests each hour. This will result in a key error.
+Due to rate limit imposed by Shakespeare API, the Poke2Shakespeare API can only make up to five requests each hour. After 5 attempts, the API will return a key error.
